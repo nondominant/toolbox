@@ -1,1 +1,12 @@
 # init
+
+#find out which terminal is you're using 
+ps -o 'cmd=' -p $(ps -o 'ppid=' -p $$)
+# ps = process status
+# -o = take keyword specifier(s)
+# 'cmd=' = the key word 
+# 'ppid=' = the key word that means parent process id
+# -p = specify a process id
+# $(     ) = expand and evaluate expression in subshell
+# $$ = current process id
+

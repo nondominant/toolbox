@@ -1,1 +1,13 @@
-# init
+# https://www.freedesktop.org/software/systemd/man/systemd.service.html
+# ^ docs 
+sudo mv test.service /etc/systemd/system
+
+# reload systemd service files 
+sudo systemctl daemon-reload
+
+#start service 
+sudo systemctl start myservicename
+
+
+# stop service 
+sudo systemctl stop myservicename
