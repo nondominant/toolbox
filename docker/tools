@@ -1,1 +1,43 @@
-# init
+# in this case the container is only accessible from
+# the host itself (because 127.0.0.1 is specified)
+$ docker run -d -p 127.0.0.1:8080:80 container_name
+
+# map port 8080 on host to 80 on container
+$ docker run -d -p 8080:80 container_name
+
+# if EXPOSE 80 is included in Dockerfile
+# then the below command will bind container 
+# port 80 to a random host port
+$ docker run -d -publish-all container_name
+
+# for some reason a container sometimes doesn't have internet access
+# to fix it run
+$ sysctl -w net.ipv4.ip_forward=1 
+# then I had to run 
+$ sudo service docker restart.
+
+# start a bash shell on a running container 
+$ docker exec -it container_name bash
+
+# start the container and immediately jump into a shell session
+$ docker run -it container_name /bin/bash
+
+
+# include below statement in Dockerfile if package installs involve user
+# interaction that you want to avoid manually inputing
+RUN echo 'debconf debconf/frontend select Dialog' | debconf-set-selections
+
+
+# if docker runs out of room it may be cached images and containers 
+docker system prune --force
+
+# get container ip 
+docker container inspect container_name | grep -i ipaddress
+
+# open ssh tunnel 
+ssh -L 8080:127.0.0.1:5432 root@172.17.0.2
+
+# open psql to container through tunnel
+psql -h 127.0.0.1 -p 8080 -U postgres-username database-name
+
+

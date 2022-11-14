@@ -108,3 +108,12 @@ virt-manager
 npm i -g elm
 cd /usr/lib
 sudo ln -s libncurses++w.so.6 libtinfo.so.5
+
+#aircrack-ng
+#enable monitor mode on wireless interface
+airmon-ng start wlan0
+#view wifi networks
+airodump-ng wlan0mon
+#start capture
+airodump-ng --bssid c4:3D:C4:3D:C7 --essid myrouter -c channelnumber -w ~/Workspace/work/wifi/dump.txt wlan0mon
+#may need to restart wpa_supplicant process afterwards to get wifi working

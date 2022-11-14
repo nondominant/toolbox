@@ -39,8 +39,10 @@ CREATE database example;
 \c example
 #add extension
 CREATE EXTENSION IF NOT EXISTS timescaledb;
-#attach
+#attach (as postgres user already)
 psql -h localhost -d example
+#attach (as another user)
+psql -U postgres -h localhost -d example
 
 #Now that you have your first TimescaleDB database up and running, you can check out the TimescaleDB section in our documentation, and find out what you can do with it.
 # https://docs.timescale.com/timescaledb/latest/

@@ -1,0 +1,30 @@
+An image is a representation of the requirements for that 
+particular container to run.
+
+| Docker run-time (daemon) is used to do the following: 
+| ----------------
+| Download image
+| Build image 
+| Run container
+| ----------------
+
+A Docker file is a plain text file that contains instructions that 
+tell the Docker Build Engine how to create an image
+
+example of a docker file 
+
+FROM ubuntu:18.04
+RUN echo 'hello' > /message
+COPY message /message2
+CMD ["cat", "/message"]
+CMD ["cat", "/message2"]
+
+to build the image from the above docker file contents
+$ docker build -t test_container:hello_image .
+
+to run the built image
+$ docker run test_container:hello_image
+
+
+
+
